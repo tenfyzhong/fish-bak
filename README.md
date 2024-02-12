@@ -1,6 +1,7 @@
 # fish-bak
 [![GitHub tag](https://img.shields.io/github/tag/tenfyzhong/fish-bak.svg)](https://github.com/tenfyzhong/fish-bak/tags)
 [![CI](https://github.com/tenfyzhong/fish-bak/actions/workflows/test.yml/badge.svg)](https://github.com/tenfyzhong/fish-bak/actions/workflows/test.yml)
+
 A command to bak and restore files
 
 # usage
