@@ -3,8 +3,8 @@ function date
     echo $mockdate
 end
 
-set home (mktemp -d)
-cd $home
+set testhome (mktemp -d)
+cd $testhome
 
 @test 'argparse failed, statuss' (bak -x &>/dev/null) $status -eq 1
 @test 'argparse failed, output' (bak -x | string collect) = 'bak: Backup file/directory
@@ -61,5 +61,12 @@ bak -m -t -r *
 @test 'bak hello.txt' ! -f hello.txt.$mockdate.bak -a -f hello.txt
 @test 'bak world.txt' ! -f world.txt.$mockdate.bak -a -f world.txt
 
+mkdir testdir
+bak -m testdir/
+@test 'bak -m testdir' -d testdir.bak -a ! -d testdir
 
-rm -rf $home
+mkdir testdir2
+bak -m testdir2
+@test 'bak -m testdir2' -d testdir2.bak -a ! -d testdir2
+
+rm -rf $testhome

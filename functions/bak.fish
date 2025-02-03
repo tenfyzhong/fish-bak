@@ -5,7 +5,7 @@ function bak --description "Backup file/directory"
         return 1
     end
 
-    if set -q _flag_help 
+    if set -q _flag_help
         _bak_help
         return 0
     end
@@ -24,10 +24,13 @@ function bak --description "Backup file/directory"
     end
 
     for f in $argv
-        if test ! -e $f 
+        if test ! -e $f
             echo "bak can't bak $f: No such file or directory"
             continue
         end
+
+        set f (realpath $f)
+
         if set -q _flag_restore
             set -l match (string match -r $pattern $f)
             if test -z $match
