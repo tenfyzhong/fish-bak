@@ -49,8 +49,16 @@ function bak --description "Backup file/directory"
             end
         end
         if set -q _flag_mv
+            # Remove existing directory to avoid moving source into it
+            if test -d $new
+                rm -rf $new
+            end
             mv -f $f $new
         else
+            # Remove existing directory to avoid copying source into it
+            if test -d $new
+                rm -rf $new
+            end
             cp -rf $f $new
         end
     end
